@@ -4,13 +4,24 @@ import ThePomodoro from "@/components/ThePomodoro.vue";
 
 <template>
   <header>
-    <h1>Hello</h1>
+    <h1>pomodoro</h1>
   </header>
 
   <main>
-    <ThePomodoro msg="World"/>
+    <ThePomodoro :duration="123"/>
   </main>
 </template>
 
+<style lang="scss">
+@import "@/assets/styles/styles.scss";
+</style>
+
 <style lang="scss" scoped>
+header {
+  padding: 48px;
+  h1 {
+    text-align: center;
+    @include heading-2;
+  }
+}
 </style>
