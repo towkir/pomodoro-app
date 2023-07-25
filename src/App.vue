@@ -8,7 +8,7 @@ import ThePomodoro from "@/components/ThePomodoro.vue";
   </header>
 
   <main>
-    <ThePomodoro :duration="123"/>
+    <ThePomodoro :duration="80"/>
   </main>
 </template>
 

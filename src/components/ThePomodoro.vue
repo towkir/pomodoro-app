@@ -10,6 +10,9 @@ defineProps({
 <template>
   <div class="pomodoro-wrapper">
     <div class="pomodoro-dial">
+      <svg>
+        <circle cx="164" cy="164" r="159" :stroke-dashoffset="`calc(1000px - (1000px * ${duration}) / 100)`"></circle>
+      </svg>
       <h1>{{ duration }}</h1>
     </div>
   </div>
@@ -32,6 +35,22 @@ defineProps({
     @include center-aligned-child;
     h1 {
       @include heading-1;
+    }
+    svg {
+      position: absolute;
+      width: 338px;
+      height: 338px;
+      transform: rotate(-90deg);
+      circle {
+        fill: none;
+        stroke: $brand-orange;
+        stroke-width: 14;
+        stroke-linecap: round;
+        transform: translate(5px, 5px);
+        //stroke-dashoffset: 1000px;
+        stroke-dasharray: 1000px;
+        transition: stroke 0.3s ease-in-out;
+      }
     }
   }
 }
