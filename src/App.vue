@@ -1,4 +1,5 @@
 <script setup>
+import TheMode from "@/components/TheMode.vue";
 import ThePomodoro from "@/components/ThePomodoro.vue";
 </script>
 
@@ -8,6 +9,7 @@ import ThePomodoro from "@/components/ThePomodoro.vue";
   </header>
 
   <main>
+    <TheMode current-mode="pomodoro" />
     <ThePomodoro :duration="80"/>
   </main>
 </template>
@@ -23,5 +25,9 @@ header {
     text-align: center;
     @include heading-2;
   }
+}
+
+main {
+  text-align: center;
 }
 </style>
