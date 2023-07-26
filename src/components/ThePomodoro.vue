@@ -1,10 +1,22 @@
 <script setup>
-defineProps({
+import {computed} from "vue";
+
+const props = defineProps({
   duration: {
     type: Number,
     required: true,
   }
+});
+
+const timer = computed(() => {
+  const minutes = props.duration / 60;
+  const remainingSeconds = props.duration % 60;
+  return `${appendOrPrependZero(minutes)}:${appendOrPrependZero(remainingSeconds)}`;
 })
+
+function appendOrPrependZero(value) {
+  return value < 10 ? `0${value}` : value;
+}
 </script>
 
 <template>
@@ -13,7 +25,7 @@ defineProps({
       <svg>
         <circle cx="164" cy="164" r="159" :stroke-dashoffset="`calc(1000px - (1000px * ${duration}) / 100)`"></circle>
       </svg>
-      <h1>{{ duration }}</h1>
+      <h1>{{ timer }}</h1>
     </div>
   </div>
 </template>

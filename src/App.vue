@@ -1,6 +1,20 @@
 <script setup>
 import TheMode from "@/components/TheMode.vue";
 import ThePomodoro from "@/components/ThePomodoro.vue";
+import {ref} from "vue";
+
+const mode = ref('pomodoro');
+const duration = ref(1500);
+const modes = ref([
+  { name: 'pomodoro', duration: 1500 },
+  { name: 'short break', duration: 300 },
+  { name: 'long break', duration: 900 },
+]);
+function changeMode(newMode) {
+  mode.value = newMode;
+  const modeToBeSet = modes.value.find(item => item.name === newMode);
+  duration.value = modeToBeSet.duration;
+}
 </script>
 
 <template>
@@ -9,8 +23,12 @@ import ThePomodoro from "@/components/ThePomodoro.vue";
   </header>
 
   <main>
-    <TheMode current-mode="pomodoro" />
-    <ThePomodoro :duration="80"/>
+    <TheMode
+      :current-mode="mode"
+      :modes="modes.map(item=> item.name)"
+      @changeMode="changeMode"
+    />
+    <ThePomodoro :duration="duration"/>
   </main>
 </template>
 

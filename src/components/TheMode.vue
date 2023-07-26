@@ -1,19 +1,32 @@
 <script setup>
-import {ref} from "vue";
-
 defineProps({
   currentMode: {
     type: String,
     required: true,
-  }
+  },
+  modes: {
+    type: Array,
+    required: true,
+  },
 });
 
-const modes = ref(['pomodoro', 'short break', 'long break']);
+const emit = defineEmits(['changeMode']);
+
+function changeMode(mode) {
+  emit('changeMode', mode);
+}
 </script>
 
 <template>
 <div class="pomodoro-mode">
-  <span v-for="mode in modes" :key="mode" class="mode" :class="{ active: mode === currentMode}">{{mode}}</span>
+  <span
+    v-for="mode in modes"
+    :key="mode" class="mode"
+    :class="{active: mode === currentMode}"
+    @click="changeMode(mode)"
+  >
+    {{mode}}
+  </span>
 </div>
 </template>
 
@@ -32,6 +45,12 @@ const modes = ref(['pomodoro', 'short break', 'long break']);
     border-radius: 30px;
     cursor: pointer;
     opacity: 0.4;
+    transition-property: opacity, background-color, color;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
     &.active {
       color: $brand-navy;
       background-color: $brand-orange;
