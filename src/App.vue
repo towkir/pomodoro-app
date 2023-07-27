@@ -2,6 +2,7 @@
 import TheMode from "@/components/TheMode.vue";
 import ThePomodoro from "@/components/ThePomodoro.vue";
 import {ref} from "vue";
+import VectorIconSettings from "@/components/icons/VectorIconSettings.vue";
 
 const mode = ref('pomodoro');
 const duration = ref(1500);
@@ -29,6 +30,7 @@ function changeMode(newMode) {
       @changeMode="changeMode"
     />
     <ThePomodoro :duration="duration"/>
+    <VectorIconSettings />
   </main>
 </template>
 
