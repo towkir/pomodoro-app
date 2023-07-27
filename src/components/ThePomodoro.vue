@@ -1,5 +1,5 @@
 <script setup>
-import {computed} from "vue";
+import {computed, ref} from "vue";
 
 const props = defineProps({
   duration: {
@@ -8,11 +8,16 @@ const props = defineProps({
   }
 });
 
+const timerRunning = ref(false);
+
 const timer = computed(() => {
   const minutes = props.duration / 60;
   const remainingSeconds = props.duration % 60;
   return `${appendOrPrependZero(minutes)}:${appendOrPrependZero(remainingSeconds)}`;
 })
+const buttonText = computed(() => {
+  return timerRunning.value ? 'pause' : 'start';
+});
 
 function appendOrPrependZero(value) {
   return value < 10 ? `0${value}` : value;
@@ -26,6 +31,7 @@ function appendOrPrependZero(value) {
         <circle cx="164" cy="164" r="159" :stroke-dashoffset="`calc(1000px - (1000px * ${duration}) / 100)`"></circle>
       </svg>
       <h1>{{ timer }}</h1>
+      <h4>{{ buttonText }}</h4>
     </div>
   </div>
 </template>
@@ -38,21 +44,20 @@ function appendOrPrependZero(value) {
   background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
   box-shadow: 50px 50px 100px 0 #121530, -50px -50px 100px 0 #272C5A;
   @include center-aligned-child;
-  margin: auto;
+  margin: 0 auto 60px;
   .pomodoro-dial {
     width: 366px;
     height: 366px;
     border-radius: 366px;
     background: $brand-navy-darker;
     @include center-aligned-child;
-    h1 {
-      @include heading-1;
-    }
+    position: relative;
     svg {
       position: absolute;
       width: 338px;
       height: 338px;
       transform: rotate(-90deg);
+      cursor: pointer;
       circle {
         fill: none;
         stroke: $brand-orange;
@@ -63,6 +68,14 @@ function appendOrPrependZero(value) {
         stroke-dasharray: 1000px;
         transition: stroke 0.3s ease-in-out;
       }
+    }
+    h1 {
+      @include heading-1;
+    }
+    h4 {
+      @include heading-4;
+      position: absolute;
+      bottom: 90px;
     }
   }
 }
