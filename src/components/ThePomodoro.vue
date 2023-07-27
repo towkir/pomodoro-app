@@ -28,7 +28,7 @@ function appendOrPrependZero(value) {
   <div class="pomodoro-wrapper">
     <div class="pomodoro-dial">
       <svg>
-        <circle cx="164" cy="164" r="159" :stroke-dashoffset="`calc(1000px - (1000px * ${duration}) / 100)`"></circle>
+        <circle cx="170" cy="170" r="164" :stroke-dashoffset="`calc(1031px - (1031px * ${duration}) / 100)`"></circle>
       </svg>
       <h1>{{ timer }}</h1>
       <h4>{{ buttonText }}</h4>
@@ -54,19 +54,19 @@ function appendOrPrependZero(value) {
     position: relative;
     svg {
       position: absolute;
-      width: 338px;
-      height: 338px;
+      width: 340px;
+      height: 340px;
       transform: rotate(-90deg);
       cursor: pointer;
+      z-index: 5;
       circle {
         fill: none;
         stroke: $brand-orange;
-        stroke-width: 14;
+        stroke-width: 11;
         stroke-linecap: round;
-        transform: translate(5px, 5px);
-        //stroke-dashoffset: 1000px;
-        stroke-dasharray: 1000px;
-        transition: stroke 0.3s ease-in-out;
+        //stroke-dashoffset: 1031px;
+        stroke-dasharray: 1031px;
+        transition: stroke-dashoffset 0.3s ease-in-out;
       }
     }
     h1 {
