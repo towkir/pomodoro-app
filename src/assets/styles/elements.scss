@@ -1,0 +1,14 @@
+.btn {
+  padding: 12px 26px;
+  border-radius: 10px;
+  appearance: none;
+  border: 0;
+  font-family: inherit;
+  background-color: transparent;
+  transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  cursor: pointer;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
