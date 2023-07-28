@@ -1,5 +1,5 @@
 <script setup>
-import {computed, ref} from "vue";
+import {computed, ref, watch} from "vue";
 
 const props = defineProps({
   duration: {
@@ -9,26 +9,62 @@ const props = defineProps({
 });
 
 const timerRunning = ref(false);
+const localDuration = ref(props.duration);
+const timerCompleted = ref(false);
 
 const timer = computed(() => {
-  const minutes = props.duration / 60;
-  const remainingSeconds = props.duration % 60;
+  const minutes = Math.floor(localDuration.value / 60);
+  const remainingSeconds = localDuration.value % 60;
   return `${appendOrPrependZero(minutes)}:${appendOrPrependZero(remainingSeconds)}`;
 })
 const buttonText = computed(() => {
+  if (timerCompleted.value) {
+    return 'restart';
+  }
   return timerRunning.value ? 'pause' : 'start';
 });
+const timerProgress = computed(() => {
+  return (localDuration.value / props.duration) * 100;
+})
 
+const theTimer = ref();
+function countDown() {
+  if (localDuration.value > 0) {
+    localDuration.value -= 1;
+  } else {
+    clearInterval(theTimer.value);
+    timerCompleted.value = true;
+    timerRunning.value = false;
+  }
+}
+function toggleTimer() {
+  if (timerRunning.value) {
+    clearInterval(theTimer.value);
+  } else {
+    if (timerCompleted.value) {
+      localDuration.value = props.duration;
+      timerCompleted.value = false;
+    }
+    theTimer.value = setInterval(countDown, 1000);
+  }
+  timerRunning.value = !timerRunning.value;
+}
 function appendOrPrependZero(value) {
   return value < 10 ? `0${value}` : value;
 }
+
+watch(() => props.duration, (value) => {
+  localDuration.value = value;
+  timerRunning.value = false;
+  clearInterval(theTimer.value);
+})
 </script>
 
 <template>
   <div class="pomodoro-wrapper">
-    <div class="pomodoro-dial">
+    <div class="pomodoro-dial" @click="toggleTimer">
       <svg>
-        <circle cx="170" cy="170" r="164" :stroke-dashoffset="`calc(1031px - (1031px * ${duration}) / 100)`"></circle>
+        <circle cx="170" cy="170" r="164" :stroke-dashoffset="`calc(1031px - (1031px * ${timerProgress}) / 100)`"></circle>
       </svg>
       <h1>{{ timer }}</h1>
       <h4>{{ buttonText }}</h4>
