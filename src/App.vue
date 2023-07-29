@@ -26,8 +26,13 @@ function showSettingsModal() {
       :modes="store.modes.map(item=> item.name)"
       @changeMode="store.selectMode"
     />
-    <ThePomodoro :duration-in-minutes="store.selectedMode.duration"/>
-    <button class="btn minimal" @click="showSettingsModal">
+    <ThePomodoro
+      :duration-in-minutes="store.selectedMode.duration"
+    />
+    <button
+      class="btn minimal"
+      @click="showSettingsModal"
+    >
       <VectorIconSettings />
     </button>
     <SettingsModal />

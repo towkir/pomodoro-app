@@ -1,5 +1,5 @@
 <script setup>
-import {onMounted, onUnmounted, ref} from "vue";
+import { onMounted, onUnmounted, ref } from "vue";
 import VectorIconClose from "@/components/icons/VectorIconClose.vue";
 
 const props = defineProps({
@@ -111,15 +111,26 @@ onUnmounted(() => {
       aria-labelledby="modal-title"
       aria-describedby="modal-description"
     >
-      <div id="modal-title" class="modal-header">
+      <div
+        id="modal-title"
+        class="modal-header"
+      >
         <h3>
           <slot name="header">
             {{ title }}
           </slot>
         </h3>
-        <button class="btn minimal" @click="hide"><VectorIconClose /></button>
+        <button
+          class="btn minimal"
+          @click="hide"
+        >
+          <VectorIconClose />
+        </button>
       </div>
-      <div id="modal-description" class="modal-body">
+      <div
+        id="modal-description"
+        class="modal-body"
+      >
         <slot name="body">
           Modal Body
         </slot>

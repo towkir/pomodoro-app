@@ -69,7 +69,12 @@ watch(() => props.durationInMinutes, (value) => {
   <div class="pomodoro-wrapper">
     <div class="pomodoro-dial" @click="toggleTimer">
       <svg>
-        <circle cx="170" cy="170" r="164" :stroke-dashoffset="`calc(1031px - (1031px * ${timerProgress}) / 100)`"></circle>
+        <circle
+          cx="170"
+          cy="170"
+          r="164"
+          :stroke-dashoffset="`calc(1031px - (1031px * ${timerProgress}) / 100)`"
+        ></circle>
       </svg>
       <h1>{{ timer }}</h1>
       <h4>{{ buttonText }}</h4>
