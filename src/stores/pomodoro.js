@@ -12,8 +12,8 @@ export const usePomodoroStore = defineStore('pomodoro', () => {
   ]);
   const colors = ref(['begonia', 'teal', 'purple']);
   const fonts = ref(['sans', 'serif', 'mono']);
-  function selectMode(mode) {
-    selectedMode.value = mode;
+  function selectMode(modeName) {
+    selectedMode.value = modes.value.find(item => item.name === modeName);
   }
   function selectColor(color) {
     selectedColor.value = color;
