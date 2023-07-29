@@ -97,7 +97,7 @@ watch(() => props.duration, (value) => {
       z-index: 5;
       circle {
         fill: none;
-        stroke: $brand-orange;
+        stroke: $brand-begonia;
         stroke-width: 11;
         stroke-linecap: round;
         //stroke-dashoffset: 1031px;

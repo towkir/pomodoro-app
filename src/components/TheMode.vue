@@ -53,7 +53,7 @@ function changeMode(mode) {
     }
     &.active {
       color: $brand-navy;
-      background-color: $brand-orange;
+      background-color: $brand-begonia;
       opacity: 1;
     }
   }

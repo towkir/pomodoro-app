@@ -198,7 +198,7 @@ onUnmounted(() => {
       .btn.okay {
         @include body-1;
         color: $brand-white;
-        background-color: $brand-orange;
+        background-color: $brand-begonia;
         border-radius: 30px;
         padding: 14px 32px;
         min-width: 140px;
