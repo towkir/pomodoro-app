@@ -147,7 +147,7 @@ onUnmounted(() => {
   width: 100vw;
   height: 100vh;
   z-index: 50;
-  background-color: transparentize($brand-navy-darker, 0.5);
+  background-color: transparentize($brand-backdrop, 0.5);
   transition: opacity 0.3s ease-in-out;
   &.hidden {
     display: none;
