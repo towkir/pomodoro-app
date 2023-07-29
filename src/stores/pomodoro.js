@@ -1,7 +1,7 @@
 import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
-export const useCounterStore = defineStore('pomodoro', () => {
+export const usePomodoroStore = defineStore('pomodoro', () => {
   const selectedMode = ref({ name: 'pomodoro', duration: 25 });
   const selectedColor = ref('begonia');
   const selectedFont = ref('sans');
