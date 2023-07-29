@@ -1,22 +1,12 @@
 <script setup>
-import {ref} from "vue";
 import TheMode from "@/components/TheMode.vue";
 import ThePomodoro from "@/components/ThePomodoro.vue";
 import VectorIconSettings from "@/components/icons/VectorIconSettings.vue";
 import SettingsModal from "@/components/SettingsModal.vue";
+import { usePomodoroStore } from "@/stores/pomodoro";
 
-const mode = ref('pomodoro');
-const duration = ref(1500);
-const modes = ref([
-  { name: 'pomodoro', duration: 1500 },
-  { name: 'short break', duration: 300 },
-  { name: 'long break', duration: 900 },
-]);
-function changeMode(newMode) {
-  mode.value = newMode;
-  const modeToBeSet = modes.value.find(item => item.name === newMode);
-  duration.value = modeToBeSet.duration;
-}
+const store = usePomodoroStore();
+
 function showSettingsModal() {
   const showModal = new CustomEvent('modal::show', {
     detail: 'settings-modal',
@@ -32,11 +22,11 @@ function showSettingsModal() {
 
   <main>
     <TheMode
-      :current-mode="mode"
-      :modes="modes.map(item=> item.name)"
-      @changeMode="changeMode"
+      :current-mode="store.selectedMode.name"
+      :modes="store.modes.map(item=> item.name)"
+      @changeMode="store.selectMode"
     />
-    <ThePomodoro :duration="duration"/>
+    <ThePomodoro :duration-in-minutes="store.selectedMode.duration"/>
     <button class="btn minimal" @click="showSettingsModal">
       <VectorIconSettings />
     </button>

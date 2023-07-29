@@ -1,17 +1,18 @@
 <script setup>
-import {computed, ref, watch} from "vue";
+import { computed, ref, watch } from "vue";
 
 const props = defineProps({
-  duration: {
+  durationInMinutes: {
     type: Number,
     required: true,
   }
 });
 
 const timerRunning = ref(false);
-const localDuration = ref(props.duration);
+const localDuration = ref(valueInSeconds(props.durationInMinutes));
 const timerCompleted = ref(false);
 
+const durationInSeconds = computed(() => { return valueInSeconds(props.durationInMinutes) })
 const timer = computed(() => {
   const minutes = Math.floor(localDuration.value / 60);
   const remainingSeconds = localDuration.value % 60;
@@ -24,7 +25,7 @@ const buttonText = computed(() => {
   return timerRunning.value ? 'pause' : 'start';
 });
 const timerProgress = computed(() => {
-  return (localDuration.value / props.duration) * 100;
+  return (localDuration.value / durationInSeconds.value) * 100;
 })
 
 const theTimer = ref();
@@ -42,7 +43,7 @@ function toggleTimer() {
     clearInterval(theTimer.value);
   } else {
     if (timerCompleted.value) {
-      localDuration.value = props.duration;
+      localDuration.value = valueInSeconds(props.durationInMinutes);
       timerCompleted.value = false;
     }
     theTimer.value = setInterval(countDown, 1000);
@@ -53,8 +54,12 @@ function appendOrPrependZero(value) {
   return value < 10 ? `0${value}` : value;
 }
 
-watch(() => props.duration, (value) => {
-  localDuration.value = value;
+function valueInSeconds(minutes) {
+  return minutes * 60;
+}
+
+watch(() => props.durationInMinutes, (value) => {
+  localDuration.value = valueInSeconds(value);
   timerRunning.value = false;
   clearInterval(theTimer.value);
 })
