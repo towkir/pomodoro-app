@@ -3,17 +3,55 @@ import { ref, onMounted } from "vue";
 import { usePomodoroStore } from "@/stores/pomodoro";
 import TheModal from "@/components/common/TheModal.vue";
 import VectorIconCheck from "@/components/icons/VectorIconCheck.vue";
+import NumberInputWithSpinner from "@/components/common/NumberInputWithSpinner.vue";
 
 const store = usePomodoroStore();
 
 const settings = ref({
-  pomodoro: {},
+  duration: {
+    pomodoro: 0,
+    shortBreak: 0,
+    longBreak: 0,
+  },
   font: '',
   color: '',
 });
 
+function findMode(name) {
+  return store.modes.find(item => item.name === name)
+}
+function validateDurations(key, name, fallbackValue) {
+  if (settings.value.duration[key] > findMode(name).max
+    || settings.value.duration[key] < findMode(name).min) {
+    settings.value.duration[key] = fallbackValue;
+  } else {
+    settings.value.duration[key] = Math.round(settings.value.duration[key]);
+  }
+}
+function validateForm() {
+  validateDurations('pomodoro', 'pomodoro', 25);
+  validateDurations('shortBreak', 'short break', 5);
+  validateDurations('longBreak', 'long break', 15);
+  if (!store.fonts.includes(settings.value.font)) {
+    settings.value.font = 'sans';
+  }
+  if (!store.colors.includes(settings.value.color)) {
+    settings.value.color = 'begonia';
+  }
+}
+
+function saveSettings() {
+  store.updateDuration('pomodoro', settings.value.duration.pomodoro);
+  store.updateDuration('short break', settings.value.duration.shortBreak);
+  store.updateDuration('long break', settings.value.duration.longBreak);
+  store.selectFont(settings.value.font);
+  store.selectColor(settings.value.color);
+  store.selectMode(store.selectedMode.name); // updates duration of currently selected mode
+}
 function resetSettings() {
-  // settings.value.pomodoro =
+  settings.value.duration.pomodoro = findMode('pomodoro').duration;
+  settings.value.duration.shortBreak = findMode('short break').duration;
+  settings.value.duration.longBreak = findMode('long break').duration;
   settings.value.font = store.selectedFont;
   settings.value.color = store.selectedColor;
 }
@@ -24,7 +62,8 @@ function hideSettingsModal() {
   window.dispatchEvent(showModal);
 }
 function applySettings() {
-  // some stuff to save the settings
+  validateForm();
+  saveSettings();
   hideSettingsModal();
 }
 
@@ -44,7 +83,26 @@ onMounted(() => {
   <template #body>
     <div class="settings">
       <h5>Time (Minutes)</h5>
-      <div class="time"></div>
+      <div class="time">
+        <NumberInputWithSpinner
+          label="pomodoro"
+          v-model="settings.duration.pomodoro"
+          :min="findMode('pomodoro').min"
+          :max="findMode('pomodoro').max"
+        />
+        <NumberInputWithSpinner
+          label="short break"
+          v-model="settings.duration.shortBreak"
+          :min="findMode('short break').min"
+          :max="findMode('short break').max"
+        />
+        <NumberInputWithSpinner
+          label="long break"
+          v-model="settings.duration.longBreak"
+          :min="findMode('long break').min"
+          :max="findMode('long break').max"
+        />
+      </div>
       <div class="font">
         <h5>Font</h5>
         <div class="options">
@@ -106,6 +164,13 @@ onMounted(() => {
   .font,
   .color {
     padding: 24px 0;
+  }
+  .time {
+    display: flex;
+    gap: 20px;
+    div {
+      flex: 1 1 0;
+    }
   }
   .font,
   .color {
