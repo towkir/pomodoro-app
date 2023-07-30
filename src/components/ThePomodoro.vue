@@ -1,15 +1,16 @@
 <script setup>
 import { computed, ref, watch } from "vue";
-import { usePomodoroStore } from "@/stores/pomodoro";
 
 const props = defineProps({
   durationInMinutes: {
     type: Number,
     required: true,
+  },
+  theme: {
+    type: String,
+    required: true,
   }
 });
-
-const store = usePomodoroStore();
 
 const timerRunning = ref(false);
 const localDuration = ref(valueInSeconds(props.durationInMinutes));
@@ -30,7 +31,6 @@ const buttonText = computed(() => {
 const timerProgress = computed(() => {
   return (localDuration.value / durationInSeconds.value) * 100;
 });
-const theme = computed(() => { return store.selectedColor})
 
 const theTimer = ref();
 function countDown() {

@@ -28,6 +28,7 @@ function showSettingsModal() {
     />
     <ThePomodoro
       :duration-in-minutes="store.selectedMode.duration"
+      :theme="store.selectedColor"
     />
     <button
       class="btn minimal"
