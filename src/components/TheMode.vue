@@ -8,6 +8,10 @@ defineProps({
     type: Array,
     required: true,
   },
+  theme: {
+    type: String,
+    required: true,
+  }
 });
 
 const emit = defineEmits(['changeMode']);
@@ -18,7 +22,7 @@ function changeMode(mode) {
 </script>
 
 <template>
-<div class="pomodoro-mode">
+<div class="pomodoro-mode" :class="`${theme}`">
   <span
     v-for="mode in modes"
     :key="mode" class="mode"
@@ -37,6 +41,27 @@ function changeMode(mode) {
   display: inline-block;
   border-radius: 30px;
   margin-bottom: 45px;
+  &.begonia {
+    span.mode {
+      &.active {
+        background-color: $brand-begonia;
+      }
+    }
+  }
+  &.teal {
+    span.mode {
+      &.active {
+        background-color: $brand-teal;
+      }
+    }
+  }
+  &.purple {
+    span.mode {
+      &.active {
+        background-color: $brand-purple;
+      }
+    }
+  }
   span.mode {
     @include body-1;
     color: $brand-white-ghost;

@@ -24,6 +24,7 @@ function showSettingsModal() {
     <TheMode
       :current-mode="store.selectedMode.name"
       :modes="store.modes.map(item=> item.name)"
+      :theme="store.selectedColor"
       @changeMode="store.selectMode"
     />
     <ThePomodoro
