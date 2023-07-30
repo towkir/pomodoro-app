@@ -46,6 +46,12 @@
   font-weight: bold;
 }
 
+@mixin body-3 {
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 400;
+}
+
 @mixin center-aligned-child {
   display: flex;
   align-items: center;
