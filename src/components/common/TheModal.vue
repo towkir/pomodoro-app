@@ -205,7 +205,7 @@ onUnmounted(() => {
     }
     .modal-footer {
       position: relative;
-      padding: 30px 40px;
+      padding: 15px 40px;
       .btn.okay {
         @include body-1;
         color: $brand-white;
