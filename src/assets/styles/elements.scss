@@ -12,3 +12,71 @@
     cursor: not-allowed;
   }
 }
+
+label {
+  input[type="radio"] {
+    display: none;
+    & + span {
+      display: inline-block;
+      text-align: center;
+      line-height: 40px;
+      width: 40px;
+      height: 40px;
+      border-radius: 40px;
+      background-color: $brand-white-smoke;
+      margin: 0 8px;
+      cursor: pointer;
+      position: relative;
+      &:before {
+        content: '';
+        display: inline-block;
+        width: 50px;
+        height: 50px;
+        border-radius: 46px;
+        position: absolute;
+        top: -5px;
+        left: -5px;
+        border: 1px solid $brand-border;
+        box-sizing: border-box;
+        opacity: 0;
+      }
+      &:hover {
+        &:before {
+          opacity: 1;
+        }
+      }
+      &.sans {
+        font-family: 'Kumbh Sans', sans-serif;
+      }
+      &.serif {
+        font-family: 'Roboto Slab', serif;
+      }
+      &.mono {
+        font-family: 'Space Mono', monospace;
+      }
+      &.begonia {
+        background-color: $brand-begonia;
+      }
+      &.teal {
+        background-color: $brand-teal;
+      }
+      &.purple {
+        background-color: $brand-purple;
+      }
+    }
+    & + span.color-label {
+      svg {
+        opacity: 0;
+      }
+    }
+    &:checked + span.font-label {
+      color: $brand-white;
+      background-color: $brand-navy-darker;
+    }
+    &:checked + span.color-label {
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+}
