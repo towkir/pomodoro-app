@@ -2,7 +2,7 @@ import { ref } from 'vue'
 import { defineStore } from 'pinia'
 
 export const usePomodoroStore = defineStore('pomodoro', () => {
-  const selectedMode = ref({ name: 'pomodoro', duration: 25 });
+  const selectedMode = ref({ name: 'pomodoro', duration: 25, min: 15, max: 40 });
   const selectedColor = ref('begonia');
   const selectedFont = ref('sans');
   const modes = ref([
@@ -15,6 +15,9 @@ export const usePomodoroStore = defineStore('pomodoro', () => {
   function selectMode(modeName) {
     selectedMode.value = modes.value.find(item => item.name === modeName);
   }
+  function updateDuration(modeName, duration) {
+    modes.value.find(item => item.name === modeName).duration = duration;
+  }
   function selectColor(color) {
     selectedColor.value = color;
   }
@@ -22,5 +25,5 @@ export const usePomodoroStore = defineStore('pomodoro', () => {
     selectedFont.value = font;
   }
 
-  return { selectedMode, selectedColor, selectedFont, modes, colors, fonts, selectMode, selectColor, selectFont }
+  return { selectedMode, selectedColor, selectedFont, modes, colors, fonts, selectMode, updateDuration, selectColor, selectFont }
 })
