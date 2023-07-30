@@ -1,5 +1,6 @@
 <script setup>
 import { computed, ref, watch } from "vue";
+import { usePomodoroStore } from "@/stores/pomodoro";
 
 const props = defineProps({
   durationInMinutes: {
@@ -7,6 +8,8 @@ const props = defineProps({
     required: true,
   }
 });
+
+const store = usePomodoroStore();
 
 const timerRunning = ref(false);
 const localDuration = ref(valueInSeconds(props.durationInMinutes));
@@ -26,7 +29,8 @@ const buttonText = computed(() => {
 });
 const timerProgress = computed(() => {
   return (localDuration.value / durationInSeconds.value) * 100;
-})
+});
+const theme = computed(() => { return store.selectedColor})
 
 const theTimer = ref();
 function countDown() {
@@ -67,7 +71,7 @@ watch(() => props.durationInMinutes, (value) => {
 
 <template>
   <div class="pomodoro-wrapper">
-    <div class="pomodoro-dial" @click="toggleTimer">
+    <div :class="`pomodoro-dial ${theme}`" @click="toggleTimer">
       <svg>
         <circle
           cx="170"
@@ -98,6 +102,27 @@ watch(() => props.durationInMinutes, (value) => {
     background: $brand-navy-darker;
     @include center-aligned-child;
     position: relative;
+    &.begonia {
+      svg {
+        circle {
+          stroke: $brand-begonia;
+        }
+      }
+    }
+    &.teal {
+      svg {
+        circle {
+          stroke: $brand-teal;
+        }
+      }
+    }
+    &.purple {
+      svg {
+        circle {
+          stroke: $brand-purple;
+        }
+      }
+    }
     svg {
       position: absolute;
       width: 340px;
@@ -107,7 +132,7 @@ watch(() => props.durationInMinutes, (value) => {
       z-index: 5;
       circle {
         fill: none;
-        stroke: $brand-begonia;
+        stroke: $brand-begonia; // fallback default
         stroke-width: 11;
         stroke-linecap: round;
         //stroke-dashoffset: 1031px;
