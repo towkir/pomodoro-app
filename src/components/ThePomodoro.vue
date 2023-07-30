@@ -9,7 +9,11 @@ const props = defineProps({
   theme: {
     type: String,
     required: true,
-  }
+  },
+  font: {
+    type: String,
+    required: true,
+  },
 });
 
 const timerRunning = ref(false);
@@ -71,7 +75,7 @@ watch(() => props.durationInMinutes, (value) => {
 
 <template>
   <div class="pomodoro-wrapper">
-    <div :class="`pomodoro-dial ${theme}`" @click="toggleTimer">
+    <div :class="`pomodoro-dial ${theme} ${font}`" @click="toggleTimer">
       <svg>
         <circle
           cx="170"
@@ -99,6 +103,7 @@ watch(() => props.durationInMinutes, (value) => {
     width: 366px;
     height: 366px;
     border-radius: 366px;
+    font-family: 'Kumbh Sans', sans-serif;
     background: $brand-navy-darker;
     @include center-aligned-child;
     position: relative;
@@ -122,6 +127,15 @@ watch(() => props.durationInMinutes, (value) => {
           stroke: $brand-purple;
         }
       }
+    }
+    &.sans {
+      font-family: 'Kumbh Sans', sans-serif;
+    }
+    &.serif {
+      font-family: 'Roboto Slab', serif;
+    }
+    &.mono {
+      font-family: 'Space Mono', monospace;
     }
     svg {
       position: absolute;

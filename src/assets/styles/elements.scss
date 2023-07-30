@@ -19,6 +19,7 @@ label {
     & + span {
       display: inline-block;
       text-align: center;
+      @include body-1;
       line-height: 40px;
       width: 40px;
       height: 40px;

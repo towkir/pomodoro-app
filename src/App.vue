@@ -25,11 +25,13 @@ function showSettingsModal() {
       :current-mode="store.selectedMode.name"
       :modes="store.modes.map(item=> item.name)"
       :theme="store.selectedColor"
+      :font="store.selectedFont"
       @changeMode="store.selectMode"
     />
     <ThePomodoro
       :duration-in-minutes="store.selectedMode.duration"
       :theme="store.selectedColor"
+      :font="store.selectedFont"
     />
     <button
       class="btn minimal"

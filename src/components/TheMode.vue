@@ -11,7 +11,11 @@ defineProps({
   theme: {
     type: String,
     required: true,
-  }
+  },
+  font: {
+    type: String,
+    required: true,
+  },
 });
 
 const emit = defineEmits(['changeMode']);
@@ -22,7 +26,7 @@ function changeMode(mode) {
 </script>
 
 <template>
-<div class="pomodoro-mode" :class="`${theme}`">
+<div class="pomodoro-mode" :class="`${theme} ${font}`">
   <span
     v-for="mode in modes"
     :key="mode" class="mode"
@@ -36,6 +40,7 @@ function changeMode(mode) {
 
 <style scoped lang="scss">
 .pomodoro-mode {
+  font-family: 'Kumbh Sans', sans-serif;
   background-color: $brand-navy-darker;
   padding: 8px;
   display: inline-block;
@@ -61,6 +66,15 @@ function changeMode(mode) {
         background-color: $brand-purple;
       }
     }
+  }
+  &.sans {
+    font-family: 'Kumbh Sans', sans-serif;
+  }
+  &.serif {
+    font-family: 'Roboto Slab', serif;
+  }
+  &.mono {
+    font-family: 'Space Mono', monospace;
   }
   span.mode {
     @include body-1;
