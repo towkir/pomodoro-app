@@ -58,5 +58,12 @@ header {
 
 main {
   text-align: center;
+  .btn.minimal {
+    opacity: 0.5;
+    transition: opacity 0.3s ease-in-out;
+    &:hover {
+      opacity: 1;
+    }
+  }
 }
 </style>
