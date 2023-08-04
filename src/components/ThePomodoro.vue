@@ -113,6 +113,11 @@ watch(() => props.durationInMinutes, (value) => {
           stroke: $brand-begonia;
         }
       }
+      &:hover {
+        h4 {
+          color: $brand-begonia;
+        }
+      }
     }
     &.teal {
       svg {
@@ -120,11 +125,21 @@ watch(() => props.durationInMinutes, (value) => {
           stroke: $brand-teal;
         }
       }
+      &:hover {
+        h4 {
+          color: $brand-teal;
+        }
+      }
     }
     &.purple {
       svg {
         circle {
           stroke: $brand-purple;
+        }
+      }
+      &:hover {
+        h4 {
+          color: $brand-purple;
         }
       }
     }
@@ -161,6 +176,7 @@ watch(() => props.durationInMinutes, (value) => {
       @include heading-4;
       position: absolute;
       bottom: 90px;
+      transition: color 0.3s ease-in-out;
     }
   }
 }
