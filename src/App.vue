@@ -66,4 +66,10 @@ main {
     }
   }
 }
+
+@media screen and (max-width: 570px) {
+  header {
+    padding: 32px;
+  }
+}
 </style>
