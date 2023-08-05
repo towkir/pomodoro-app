@@ -76,14 +76,16 @@ watch(() => props.durationInMinutes, (value) => {
 <template>
   <div class="pomodoro-wrapper">
     <div :class="`pomodoro-dial ${theme} ${font}`" @click="toggleTimer">
-      <svg>
-        <circle
-          cx="170"
-          cy="170"
-          r="164"
-          :stroke-dashoffset="`calc(1031px - (1031px * ${timerProgress}) / 100)`"
-        ></circle>
-      </svg>
+      <div class="circular-progress-bar-wrapper">
+        <svg viewBox="0 0 340 340" preserveAspectRatio="xMinYMin meet">
+          <circle
+            cx="170"
+            cy="170"
+            r="164"
+            :stroke-dashoffset="`calc(1031px - (1031px * ${timerProgress}) / 100)`"
+          ></circle>
+        </svg>
+      </div>
       <h1>{{ timer }}</h1>
       <h4>{{ buttonText }}</h4>
     </div>
@@ -92,21 +94,47 @@ watch(() => props.durationInMinutes, (value) => {
 
 <style lang="scss" scoped>
 .pomodoro-wrapper {
-  width: 410px;
-  height: 410px;
+  max-width: 410px;
   border-radius: 410px;
   background: linear-gradient(315deg, #2E325A 0%, #0E112A 100%);
   box-shadow: 50px 50px 100px 0 #121530, -50px -50px 100px 0 #272C5A;
-  @include center-aligned-child;
   margin: 0 auto 60px;
+  box-sizing: border-box;
+  padding: 22px;
   .pomodoro-dial {
-    width: 366px;
-    height: 366px;
+    width: 100%;
+    max-width: 366px;
     border-radius: 366px;
+    padding: 13px;
+    box-sizing: border-box;
     font-family: 'Kumbh Sans', sans-serif;
     background: $brand-navy-darker;
     @include center-aligned-child;
     position: relative;
+    .circular-progress-bar-wrapper {
+      width: 100%;
+      display: inline-block;
+      vertical-align: middle;
+      padding-bottom: 100%;
+      position: relative;
+      svg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        transform: rotate(-90deg);
+        cursor: pointer;
+        z-index: 5;
+        circle {
+          fill: none;
+          stroke: $brand-begonia; // fallback default
+          stroke-width: 11;
+          stroke-linecap: round;
+          //stroke-dashoffset: 1031px;
+          stroke-dasharray: 1031px;
+          transition: stroke-dashoffset 0.3s ease-in-out;
+        }
+      }
+    }
     &.begonia {
       svg {
         circle {
@@ -152,25 +180,9 @@ watch(() => props.durationInMinutes, (value) => {
     &.mono {
       font-family: 'Space Mono', monospace;
     }
-    svg {
-      position: absolute;
-      width: 340px;
-      height: 340px;
-      transform: rotate(-90deg);
-      cursor: pointer;
-      z-index: 5;
-      circle {
-        fill: none;
-        stroke: $brand-begonia; // fallback default
-        stroke-width: 11;
-        stroke-linecap: round;
-        //stroke-dashoffset: 1031px;
-        stroke-dasharray: 1031px;
-        transition: stroke-dashoffset 0.3s ease-in-out;
-      }
-    }
     h1 {
       @include heading-1;
+      position: absolute;
     }
     h4 {
       @include heading-4;
