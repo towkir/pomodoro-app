@@ -221,4 +221,23 @@ onUnmounted(() => {
     }
   }
 }
+
+@media screen and (max-width: 570px) {
+  .modal-backdrop {
+    .modal {
+      .modal-header {
+        padding: 24px;
+        h3 {
+          font-size: 20px;
+        }
+      }
+      .modal-body {
+        padding: 24px;
+      }
+      .modal-footer {
+        padding: 15px 24px;
+      }
+    }
+  }
+}
 </style>

@@ -182,4 +182,27 @@ onMounted(() => {
     }
   }
 }
+
+@media screen and (max-width: 570px) {
+  .settings {
+    h5 {
+      font-size: 11px;
+      text-align: center;
+    }
+    .time,
+    .font,
+    .color {
+      flex-direction: column;
+      gap: 18px;
+      padding: 18px 0;
+    }
+    .time {
+      gap: 0;
+    }
+    .color {
+      padding-bottom: 0;
+    }
+
+  }
+}
 </style>

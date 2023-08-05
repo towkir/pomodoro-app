@@ -127,4 +127,18 @@ function decreaseValue() {
     color: $brand-begonia;
   }
 }
+
+@media screen and (max-width: 570px) {
+  .number-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    label, input[type="number"] {
+      flex: 1 1 0px;
+    }
+    label {
+      margin-bottom: 0;
+    }
+  }
+}
 </style>
