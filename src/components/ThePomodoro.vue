@@ -25,8 +25,8 @@ const timer = computed(() => {
   const minutes = Math.floor(localDuration.value / 60);
   const remainingSeconds = localDuration.value % 60;
   return {
-    minutes: appendOrPrependZero(minutes),
-    seconds: appendOrPrependZero(remainingSeconds),
+    minutes: appendZero(minutes),
+    seconds: appendZero(remainingSeconds),
   }
 })
 const buttonText = computed(() => {
@@ -61,7 +61,7 @@ function toggleTimer() {
   }
   timerRunning.value = !timerRunning.value;
 }
-function appendOrPrependZero(value) {
+function appendZero(value) {
   return value < 10 ? `0${value}` : value;
 }
 
