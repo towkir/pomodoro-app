@@ -24,7 +24,10 @@ const durationInSeconds = computed(() => { return valueInSeconds(props.durationI
 const timer = computed(() => {
   const minutes = Math.floor(localDuration.value / 60);
   const remainingSeconds = localDuration.value % 60;
-  return `${appendOrPrependZero(minutes)}:${appendOrPrependZero(remainingSeconds)}`;
+  return {
+    minutes: appendOrPrependZero(minutes),
+    seconds: appendOrPrependZero(remainingSeconds),
+  }
 })
 const buttonText = computed(() => {
   if (timerCompleted.value) {
@@ -86,7 +89,11 @@ watch(() => props.durationInMinutes, (value) => {
           ></circle>
         </svg>
       </div>
-      <h1>{{ timer }}</h1>
+      <h1>
+        <span class="minutes">{{ timer.minutes }}</span>
+        <span class="separator">:</span>
+        <span class="seconds">{{ timer.seconds }}</span>
+      </h1>
       <h4>{{ buttonText }}</h4>
     </div>
   </div>
@@ -183,6 +190,23 @@ watch(() => props.durationInMinutes, (value) => {
     h1 {
       @include heading-1;
       position: absolute;
+      min-width: 310px;
+      height: 120px;
+      span {
+        position: absolute;
+        &.separator {
+          left: 50%;
+          transform: translateX(-50%);
+        }
+        &.minutes {
+          text-align: right;
+          right: calc(50% + 10px);
+        }
+        &.seconds {
+          text-align: left;
+          left: calc(50% + 10px);
+        }
+      }
     }
     h4 {
       @include heading-4;
