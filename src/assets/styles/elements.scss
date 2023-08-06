@@ -6,7 +6,7 @@
   font-family: inherit;
   background-color: transparent;
   transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
-  cursor: pointer;
+  @include hover-and-touch;
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
@@ -26,7 +26,7 @@ label {
       border-radius: 40px;
       background-color: $brand-white-smoke;
       margin: 0 8px;
-      cursor: pointer;
+      @include hover-and-touch;
       position: relative;
       &:before {
         content: '';

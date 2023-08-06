@@ -106,7 +106,7 @@ function decreaseValue() {
     bottom: 0;
     z-index: 5;
     opacity: 0.25;
-    cursor: pointer;
+    @include hover-and-touch;
     transition: opacity 0.3s ease-in-out;
     &:hover {
       opacity: 1;

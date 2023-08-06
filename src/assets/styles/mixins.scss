@@ -56,3 +56,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@mixin hover-and-touch {
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}

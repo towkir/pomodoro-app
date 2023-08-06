@@ -82,7 +82,7 @@ function changeMode(mode) {
     display: inline-block;
     padding: 16px 26px;
     border-radius: 30px;
-    cursor: pointer;
+    @include hover-and-touch;
     opacity: 0.4;
     transition-property: opacity, background-color, color;
     transition-duration: 0.3s;

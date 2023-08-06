@@ -129,7 +129,7 @@ watch(() => props.durationInMinutes, (value) => {
         top: 0;
         left: 0;
         transform: rotate(-90deg);
-        cursor: pointer;
+        @include hover-and-touch;
         z-index: 5;
         circle {
           fill: none;
