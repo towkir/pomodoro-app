@@ -1,35 +1,37 @@
-# pomodoro-app
+# Pomodoro App
+![Design preview for the Pomodoro App Project](./preview.png)
 
-This template should help get you started developing with Vue 3 in Vite.
+### Description
+A pomodoro app made with vue3. Set your own pomodoro or break time, update fonts or apply your preferred color scheme.
 
-## Recommended IDE Setup
+#### [Live Demo](https://pomodoro-app-towkir.vercel.app/)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Features
+As a pomodoro app this one offers some very simple features:
+- Set a pomodoro timer and short & long break timers
+- Customize how long each timer runs for
+- See a circular progress bar that updates every second and represents how far through their timer they are
+- Customize the appearance of the app with the ability to set preferences for colors and fonts
 
-## Customize configuration
+#### About
+Github Repo can be found [here](https://github.com/towkir/pomodoro-app) (if you're not already viewing this from github).
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
+---
 
-```sh
-npm install
+#### Project Setup Instructions
+
 ```
+## Project Setup
+npm install
 
 ### Compile and Hot-Reload for Development
-
-```sh
 npm run dev
-```
 
 ### Compile and Minify for Production
-
-```sh
 npm run build
-```
 
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
+### Lint with ESLint
 npm run lint
 ```
+*Feel free to contribute, fix bugs, or provide feedback*
