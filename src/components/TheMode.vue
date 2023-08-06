@@ -102,7 +102,15 @@ function changeMode(mode) {
   .pomodoro-mode {
     span.mode {
       font-size: 12px;
-      padding: 14px 20px;
+      padding: 14px 18px;
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .pomodoro-mode {
+    span.mode {
+      padding: 10px;
     }
   }
 }

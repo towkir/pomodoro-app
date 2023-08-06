@@ -211,8 +211,35 @@ watch(() => props.durationInMinutes, (value) => {
     h4 {
       @include heading-4;
       position: absolute;
-      bottom: 90px;
+      bottom: calc(50% - 80px);
       transition: color 0.3s ease-in-out;
+    }
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .pomodoro-wrapper {
+    .pomodoro-dial {
+      h1 {
+        font-size: 80px;
+        line-height: 100px;
+        min-width: 230px;
+        height: 100px;
+      }
+      h4 {
+        font-size: 12px;
+        line-height: 16px;
+        bottom: calc(50% - 60px);
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 340px) {
+  .pomodoro-wrapper {
+    padding: 15px;
+    .pomodoro-dial {
+      padding: 8px;
     }
   }
 }
