@@ -20,6 +20,7 @@ Github Repo can be found [here](https://github.com/towkir/pomodoro-app) (if you'
 
 - Vue 3
 - Sass
+- Pinia
 
 
 ---
