@@ -1,5 +1,5 @@
 # Pomodoro App
-![Design preview for the Pomodoro App Project](./preview.png)
+![Design preview for the Pomodoro App Project](./preview.jpg)
 
 ### Description
 A pomodoro app made with vue3. Set your own pomodoro or break time, update fonts or apply your preferred color scheme.
@@ -16,22 +16,34 @@ As a pomodoro app this one offers some very simple features:
 #### About
 Github Repo can be found [here](https://github.com/towkir/pomodoro-app) (if you're not already viewing this from github).
 
+#### Built with
+
+- Vue 3
+- Sass
+
 
 ---
 
 #### Project Setup Instructions
 
+
+Install dependencies:
 ```
-## Project Setup
 npm install
+```
 
-### Compile and Hot-Reload for Development
+Compile and Hot-Reload for Development:
+```
 npm run dev
+```
 
-### Compile and Minify for Production
+Compile and Minify for Production:
+```
 npm run build
+```
 
-### Lint with ESLint
+Lint with ESLint:
+```
 npm run lint
 ```
 *Feel free to contribute, fix bugs, or provide feedback*
